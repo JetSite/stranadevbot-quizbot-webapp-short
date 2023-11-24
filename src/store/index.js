@@ -252,41 +252,9 @@ const useStore = create((set, get) => ({
   updateUserStore: (mutation) => {
     const id = get().data.id;
     const user = get().data.user;
+    console.log({ data: { ...user }, id });
     mutation.mutate({ data: { ...user }, id });
   },
-  // setCities: (city, mutation) => {
-  //   const cities = get().data.user.cities
-  //   const id = get().data.id
-  //   if (cities?.find((item) => item.id === city.id)) {
-  //     mutation.mutate({
-  //       telegram_user: id,
-  //       Action: `Убрал город ${city?.attributes?.CityName}`,
-  //     })
-  //     set((state) => ({
-  //       data: {
-  //         ...state.data,
-  //         user: {
-  //           ...state.data.user,
-  //           cities: cities.filter((item) => item.id !== city.id),
-  //         },
-  //       },
-  //     }))
-  //   } else {
-  //     mutation.mutate({
-  //       telegram_user: id,
-  //       Action: `Добавил город ${city?.attributes?.CityName}`,
-  //     })
-  //     set((state) => ({
-  //       data: {
-  //         ...state.data,
-  //         user: {
-  //           ...state.data.user,
-  //           cities: [...cities, city],
-  //         },
-  //       },
-  //     }))
-  //   }
-  // },
   setCities: (city, mutation) => {
     const id = get().data.id;
     mutation.mutate({
