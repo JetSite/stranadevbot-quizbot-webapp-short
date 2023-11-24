@@ -211,7 +211,6 @@ const useStore = create((set, get) => ({
   setIpotekaPrice: (priceCustom = 0) => {
     const questions = get().data.questions;
     let price = 0;
-    console.log(priceCustom);
     if (priceCustom > 0) {
       set((state) => ({
         data: { ...state.data, ipotekaPrice: priceCustom },
@@ -252,7 +251,6 @@ const useStore = create((set, get) => ({
   updateUserStore: (mutation) => {
     const id = get().data.id;
     const user = get().data.user;
-    console.log({ data: { ...user }, id });
     mutation.mutate({ data: { ...user }, id });
   },
   setCities: (city, mutation) => {
