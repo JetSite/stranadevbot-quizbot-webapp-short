@@ -204,6 +204,10 @@ const useStore = create((set, get) => ({
         }
       });
     });
+<<<<<<< HEAD
+=======
+    console.log(Array.from(new Set(newTags)));
+>>>>>>> 57b958bd0d54f1f7c5a56b84930d203904709354
     set((state) => ({
       data: { ...state.data, tags: Array.from(new Set(newTags)) },
     }));
@@ -222,6 +226,10 @@ const useStore = create((set, get) => ({
           price = item.answer[0];
         }
       });
+<<<<<<< HEAD
+=======
+      console.log(price);
+>>>>>>> 57b958bd0d54f1f7c5a56b84930d203904709354
       set((state) => ({
         data: { ...state.data, ipotekaPrice: price },
       }));
@@ -237,6 +245,10 @@ const useStore = create((set, get) => ({
         }
       });
     });
+<<<<<<< HEAD
+=======
+    console.log(ipotekaTags);
+>>>>>>> 57b958bd0d54f1f7c5a56b84930d203904709354
     set((state) => ({
       data: { ...state.data, ipotekaTags },
     }));

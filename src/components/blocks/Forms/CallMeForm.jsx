@@ -95,9 +95,6 @@ export const CallMeForm = ({ id, setOpen, item }) => {
         className={success ? "hidden" : "flex flex-col"}
         onSubmit={handleSubmit}
       >
-        <p className="text-sm text-red-500 mb-4">
-          Узнайте как получить такой ежемесячный платёж на эту квартиру
-        </p>
         <input
           name="tel"
           id="tel"
