@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    img {
+        @apply inline-block;
+    }
+}
+
+html {
+    overflow-y: scroll;
+}
+
+@font-face {
+    font-family: 'Mazzard';
+    src: url("./assets/fonts/MazzardH-Light.ttf") format("TrueType");
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mazzard';
+    src: url("./assets/fonts/MazzardH-Regular.ttf") format("TrueType");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mazzard';
+    src: url("./assets/fonts/MazzardH-Italic.ttf") format("TrueType");
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mazzard';
+    src: url("./assets/fonts/MazzardH-Bold.ttf") format("TrueType");
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+}
+
+
+html {
+    font-family: 'Mazzard';
+    color: #1B233D;
+    height: 100vh;
+    min-height: 100vh;
+}
+
+.slick-track {
+    display: flex !important;
+    align-items: stretch !important;
+}
+
+.slick-slide {
+    display: flex !important;
+    align-self: stretch !important;
+    height: unset !important;
+
+}
+
+.slick-slide>div {
+    display: flex !important;
+    align-self: stretch !important;
+    width: 100% !important;
+    justify-content: center !important;
+    margin: 0 8px !important;
+}
+
+.slick-dots {
+    position: relative !important;
+    bottom: 0 !important;
+}
+
+.slick-dots li {
+    margin: 0 2px !important;
+    width: 10px !important;
+    height: 6px !important;
+}
+
+.slick-dots li button {
+    width: 10px !important;
+    height: 6px !important;
+    padding: 0 !important;
+}
+
+.slick-dots li button:before {
+    width: 10px !important;
+    height: 6px !important;
+    font-size: 0 !important;
+    background: #E1E8F0 !important;
+    border-radius: 1000px !important;
+    opacity: 1 !important;
+}
+
+li.slick-active {
+    width: 35px !important;
+}
+
+li.slick-active button {
+    width: 35px !important;
+}
+
+li.slick-active button:before {
+    width: 35px !important;
+    background: linear-gradient(90deg, rgba(107, 39, 146, 1) 0%, rgba(198, 22, 141, 1) 50%, rgba(237, 28, 36, 1) 100%) !important;
+}
