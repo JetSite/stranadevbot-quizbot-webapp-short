@@ -17,12 +17,18 @@ const Questions = () => {
   const { tg } = useTelegramInitData();
   const navigate = useNavigate();
   const logsMutation = useLogsQuery();
-  const [activeQuestion, setActiveQuestion] = useState(0)
-  const [showMainButton, setShowMainButton] = useState(false)
+  const [activeQuestion, setActiveQuestion] = useState(0);
+  const [showMainButton, setShowMainButton] = useState(false);
   const id = useStore((state) => state.data.id);
   const user = useStore((state) => state.data.user);
   const questions = useStore((state) => state.data.questions);
-  const { setQuestions, setTags, setIpotekaPrice, setIpotekaIds, setSortActiveFilters } = useStore((state) => state);
+  const {
+    setQuestions,
+    setTags,
+    setIpotekaPrice,
+    setIpotekaIds,
+    setSortActiveFilters,
+  } = useStore((state) => state);
   const { data } = useQuery(["questions"], () => getQuestions());
 
   // const backHandle = () => {
@@ -43,40 +49,19 @@ const Questions = () => {
   // };
 
   const onComplete = () => {
-    if (activeQuestion + 1 < data?.data?.data?.length) {
-      window.scrollTo(0, 0)
-      setActiveQuestion(activeQuestion + 1)
-      logsMutation.mutate({
-        telegram_user: id,
-        Action: `Перешел на вопрос с айди ${data?.data?.data[activeQuestion].id}`,
-      });
-    } else {
-      logsMutation.mutate({
-        telegram_user: id,
-        Action: "Прошел цикл вопросов и перешел на страницу квартир",
-      });
-      setSortActiveFilters({
-        activeFilterPrice: false,
-        activeFilterRoom: true,
-        sortFilterRoom: 'desc'
-      })
-      // if (questions.find((item) => item?.id === 3)?.answer[0]?.id === 11 || questions.find((item) => item?.id === 3)?.answer[0]?.id === 5) {
-      //   setSortActiveFilters({
-      //     activeFilterPrice: false,
-      //     activeFilterRoom: true,
-      //     sortFilterRoom: 'desc'
-      //   })
-      // } else {
-      //   setSortActiveFilters({
-      //     activeFilterPrice: true,
-      //     activeFilterRoom: false,
-      //   })
-      // }
-      setTags()
-      setIpotekaPrice()
-      setIpotekaIds()
-      navigate('/collection')
-    }
+    logsMutation.mutate({
+      telegram_user: id,
+      Action: "Прошел цикл вопросов и перешел на страницу квартир",
+    });
+    setSortActiveFilters({
+      activeFilterPrice: false,
+      activeFilterRoom: true,
+      sortFilterRoom: "desc",
+    });
+    setTags();
+    setIpotekaPrice();
+    setIpotekaIds();
+    navigate("/collection");
   };
 
   useEffect(() => {
@@ -92,17 +77,17 @@ const Questions = () => {
       tg.MainButton.show();
       tg.MainButton.setParams({
         text: "Подтвердить",
-        color: "rgb(146, 39, 143)"
+        color: "rgb(146, 39, 143)",
       });
     } else {
-      tg.MainButton.hide()
+      tg.MainButton.hide();
     }
   }, [showMainButton]);
 
   useEffect(() => {
     return () => {
       tg.MainButton.hide();
-    }
+    };
   }, []);
 
   // useEffect(() => {
@@ -119,26 +104,46 @@ const Questions = () => {
 
   return (
     <div className={`p-7 flex-col w-full`}>
-      {data?.data?.data.sort((a, b) => +a?.attributes?.Order > b?.attributes?.Order ? 1 : -1).map((item, idx) => {
-        if (item.attributes.QuestionType === 'Selection(multi)' && idx === activeQuestion) {
-          return <> {item?.attributes?.CitySelector ? <CityChange /> : null} <SelectionMulti questions={questions} id={id} setQuestions={setQuestions} setShowMainButton={setShowMainButton} key={idx} item={item?.attributes} itemId={item?.id} user={user} />{idx === 0 ? <Politic /> : null}</>
-        }
-        if (item.attributes.QuestionType === 'Selection' && idx === activeQuestion) {
-          return <>{item?.attributes?.CitySelector ? <CityChange /> : null}<Selection id={id} questions={questions} setQuestions={setQuestions} setShowMainButton={setShowMainButton} key={idx} item={item?.attributes} itemId={item?.id} user={user} />{idx === 0 ? <Politic /> : null}</>
-        }
-        if (item.attributes.QuestionType === 'Text' && idx === activeQuestion) {
-          return <>{item?.attributes?.CitySelector ? <CityChange /> : null}<InputAnswer id={id} questions={questions} setQuestions={setQuestions} setShowMainButton={setShowMainButton} key={idx} item={item?.attributes} itemId={item?.id} user={user} />{idx === 0 ? <Politic /> : null}</>
-        }
-        if (item.attributes.QuestionType === 'Range' && idx === activeQuestion) {
-          return <>{item?.attributes?.CitySelector ? <CityChange /> : null}<Range id={id} questions={questions} setQuestions={setQuestions} setShowMainButton={setShowMainButton} key={idx} item={item?.attributes} itemId={item?.id} user={user} />{idx === 0 ? <Politic /> : null}</>
-        }
-      })}
+      {data?.data?.data
+        .sort((a, b) => (+a?.attributes?.Order > b?.attributes?.Order ? 1 : -1))
+        .map((item, idx) => {
+          // if (item.attributes.QuestionType === 'Selection(multi)' && idx === activeQuestion) {
+          //   return <> {item?.attributes?.CitySelector ? <CityChange /> : null} <SelectionMulti questions={questions} id={id} setQuestions={setQuestions} setShowMainButton={setShowMainButton} key={idx} item={item?.attributes} itemId={item?.id} user={user} />{idx === 0 ? <Politic /> : null}</>
+          // }
+          // if (item.attributes.QuestionType === 'Selection' && idx === activeQuestion) {
+          //   return <>{item?.attributes?.CitySelector ? <CityChange /> : null}<Selection id={id} questions={questions} setQuestions={setQuestions} setShowMainButton={setShowMainButton} key={idx} item={item?.attributes} itemId={item?.id} user={user} />{idx === 0 ? <Politic /> : null}</>
+          // }
+          // if (item.attributes.QuestionType === 'Text' && idx === activeQuestion) {
+          //   return <>{item?.attributes?.CitySelector ? <CityChange /> : null}<InputAnswer id={id} questions={questions} setQuestions={setQuestions} setShowMainButton={setShowMainButton} key={idx} item={item?.attributes} itemId={item?.id} user={user} />{idx === 0 ? <Politic /> : null}</>
+          // }
+          if (
+            item.attributes.QuestionType === "Range" &&
+            idx === activeQuestion
+          ) {
+            return (
+              <>
+                {item?.attributes?.CitySelector ? <CityChange /> : null}
+                <Range
+                  id={id}
+                  questions={questions}
+                  setQuestions={setQuestions}
+                  setShowMainButton={setShowMainButton}
+                  key={idx}
+                  item={item?.attributes}
+                  itemId={item?.id}
+                  user={user}
+                />
+                {idx === 0 ? <Politic /> : null}
+              </>
+            );
+          }
+        })}
       {/* {showMainButton ? (
         <SubmitButton onClick={() => onComplete()}>
           Подтвердить
         </SubmitButton>
       ) : null} */}
-    </div >
+    </div>
   );
 };
 

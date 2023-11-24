@@ -204,6 +204,7 @@ const useStore = create((set, get) => ({
         }
       });
     });
+    console.log(Array.from(new Set(newTags)));
     set((state) => ({
       data: { ...state.data, tags: Array.from(new Set(newTags)) },
     }));
@@ -211,6 +212,7 @@ const useStore = create((set, get) => ({
   setIpotekaPrice: (priceCustom = 0) => {
     const questions = get().data.questions;
     let price = 0;
+    console.log(priceCustom);
     if (priceCustom > 0) {
       set((state) => ({
         data: { ...state.data, ipotekaPrice: priceCustom },
@@ -221,6 +223,7 @@ const useStore = create((set, get) => ({
           price = item.answer[0];
         }
       });
+      console.log(price);
       set((state) => ({
         data: { ...state.data, ipotekaPrice: price },
       }));
@@ -236,6 +239,7 @@ const useStore = create((set, get) => ({
         }
       });
     });
+    console.log(ipotekaTags);
     set((state) => ({
       data: { ...state.data, ipotekaTags },
     }));
