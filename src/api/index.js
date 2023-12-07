@@ -37,6 +37,7 @@ export const setLogs = async (data) => {
 }
 
 export const updateUser = async ({ data, id }) => {
+  console.log({ data, id });
   return await axios.put(`${baseApi}/telegram-users/${id}`, {
     data,
   })
