@@ -251,8 +251,8 @@ const useStore = create((set, get) => ({
   updateUserStore: (mutation) => {
     const id = get().data.id;
     const user = get().data.user;
-    console.log(user, 'h');
-    mutation.mutate({ data: { ...user }, id });
+    mutation.mutate({ data: { cities: user.cities}, id });
+    //TODO ПОЧИНИТЬ запрос
   },
   setCities: (city, mutation) => {
     const id = get().data.id;
