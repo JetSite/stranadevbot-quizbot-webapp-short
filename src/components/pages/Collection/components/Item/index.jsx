@@ -27,7 +27,6 @@ const Item = ({ item, navigate, isFetching }) => {
       >
         <div className="mb-2 flex justify-center">
           <img
-            crossOrigin="anonymous"
             className="object-contain min-h-32"
             src={item?.attributes?.image[0]?.link}
           />
